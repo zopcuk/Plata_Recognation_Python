@@ -44,7 +44,7 @@ while(cap.isOpened()):
         blur = cv2.GaussianBlur(gray, ksize=(5, 5), sigmaX=0)
         edged = cv2.Canny(blur, 30, 200)  # Perform Edge detection
 
-        kernel = np.ones((2, 2), np.uint8)
+        #kernel = np.ones((2, 2), np.uint8)
         #erosion = cv2.erode(gray, kernel, iterations=1)
         #dilation = cv2.dilate(edged, kernel, iterations=1)
         #opening = cv2.morphologyEx(edged, cv2.MORPH_OPEN, kernel)
@@ -105,6 +105,7 @@ while(cap.isOpened()):
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
         Cropped[mask > 0] = (255, 255, 255)'''
         #Cropped = cv2.fastNlMeansDenoisingColored(Cropped, None, 10, 10, 7, 15)
+
         Cropped = cv2.cvtColor(Cropped, cv2.COLOR_BGR2GRAY)
         blur = cv2.GaussianBlur(Cropped, ksize=(3, 3), sigmaX=0)
         #ret, Cropped = cv2.threshold(Cropped, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
@@ -156,7 +157,7 @@ while(cap.isOpened()):
             text = text.replace(" ", "")
             plate_list.append(text)
             a = int(most_frequent(plate_list)[1])
-            if a > 10:
+            if a > 5:
 
                 if son_plaka != most_frequent(plate_list)[0]:
                     son_plaka = most_frequent(plate_list)[0]
