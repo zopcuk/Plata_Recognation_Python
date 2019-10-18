@@ -8,7 +8,7 @@
 
 import cv2
 from PyQt5 import QtCore, QtGui, QtWidgets
-import datetime
+#import datetime
 from PIL.ImageQt import ImageQt
 import numpy as np
 from PyQt5.QtWidgets import QMainWindow, QLabel, QSizePolicy, QApplication
@@ -57,6 +57,10 @@ class Ui_Form(object):
         self.pushButton_2.setText(_translate("Form", "PushButton"))
         self.pushButton.setText(_translate("Form", "PushButton"))
 
+def update_label():
+    #current_time = str(datetime.datetime.now().time())
+    #ui.label.setText("")
+    ui.label.setPixmap(QtGui.QPixmap.fromImage(framecache()))
 
 if __name__ == "__main__":
     import sys
@@ -65,13 +69,10 @@ if __name__ == "__main__":
     ui = Ui_Form()
     ui.setupUi(Form)
     Form.show()
-    def update_label():
-        current_time = str(datetime.datetime.now().time())
-        #ui.label.setText("")
-        ui.label.setPixmap(QtGui.QPixmap.fromImage(framecache()))
+
     timer = QtCore.QTimer()
     timer.timeout.connect(update_label)
-    timer.start(100)  # every 1000 milliseconds
+    timer.start(10)
 
     sys.exit(app.exec_())
 
