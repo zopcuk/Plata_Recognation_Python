@@ -78,12 +78,11 @@ def reading(frame, screenCnt):
     #Cropped = cv2.fastNlMeansDenoisingColored(Cropped, None, 10, 10, 7, 15)
     Cropped = cv2.cvtColor(Cropped, cv2.COLOR_BGR2GRAY)
     #Cropped = cv2.GaussianBlur(Cropped, ksize=(3, 3), sigmaX=0)
-    #cv2.imshow('Cropped', Cropped)
+    cv2.imshow('Cropped', Cropped)
     #cv2.imshow('frame', frame)
-    #cv2.waitKey(100)
+    cv2.waitKey(100)
     try:
         text = pytesseract.image_to_string(Cropped, config='--psm 13')
-        #text = pytesseract.image_to_string(Cropped, config='--psm 7 -c tessedit_char_whitelist=0123456789ABCÇDEFGHIİJKLMNOÖPRSŞTUÜVYZX')
     except:
         print("hata")
 

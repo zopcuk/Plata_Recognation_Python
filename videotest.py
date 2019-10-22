@@ -8,6 +8,7 @@
 
 import cv2
 from PyQt5 import QtCore, QtGui, QtWidgets
+from threading import Thread
 #import datetime
 from PIL.ImageQt import ImageQt
 import numpy as np
@@ -47,7 +48,6 @@ class Ui_Form(object):
         self.pushButton = QtWidgets.QPushButton(Form)
         self.pushButton.setObjectName("pushButton")
         self.gridLayout.addWidget(self.pushButton, 1, 2, 1, 1)
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -60,6 +60,7 @@ class Ui_Form(object):
 def update_label():
     #current_time = str(datetime.datetime.now().time())
     #ui.label.setText("")
+    #)while True:
     ui.label.setPixmap(QtGui.QPixmap.fromImage(framecache()))
 
 if __name__ == "__main__":
@@ -70,9 +71,13 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
 
+
     timer = QtCore.QTimer()
     timer.timeout.connect(update_label)
     timer.start(10)
+    '''video = Thread(target=update_label)
+
+    video.start()'''
 
     sys.exit(app.exec_())
 

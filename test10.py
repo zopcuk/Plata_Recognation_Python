@@ -1,29 +1,10 @@
-# -*- coding: utf-8 -*-
-# Form implementation generated from reading ui file 'plakatest.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 import cv2
 import test11
-from threading import Thread
-import time
+from threading import Thread, Lock
+lock = Lock()
+
 cap = cv2.VideoCapture(0)
-platecorp = ""
-def framecache():
-    success, FrameOrigin = cap.read()
-    #cv2.imwrite("frame.jpg", FrameOrigin)
-    frame = FrameOrigin
-    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    h = frame.shape[0]
-    w = frame.shape[1]
-    d = frame.shape[2]
-    d = d*w
-    qimage = QtGui.QImage(frame, w, h, d, QtGui.QImage.Format_RGB888)
-    return qimage
 
 class Ui_plakaokuma(object):
     def setupUi(self, plakaokuma):
@@ -37,7 +18,7 @@ class Ui_plakaokuma(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.video_label = QtWidgets.QLabel(self.centralwidget)
         self.video_label.setText("")
-        self.video_label.setPixmap(QtGui.QPixmap(framecache()))
+        self.video_label.setPixmap(QtGui.QPixmap(frameconvert()))
         self.video_label.setScaledContents(True)
         self.video_label.setObjectName("video_label")
         self.horizontalLayout.addWidget(self.video_label)
@@ -53,7 +34,7 @@ class Ui_plakaokuma(object):
         self.plaka_crop.setMaximumSize(QtCore.QSize(217, 50))
         self.plaka_crop.setStyleSheet("background:red")
         self.plaka_crop.setText("")
-        self.plaka_crop.setPixmap(QtGui.QPixmap(platecorp))
+        self.plaka_crop.setPixmap(QtGui.QPixmap(qimageCrop))
         self.plaka_crop.setScaledContents(True)
         self.plaka_crop.setObjectName("plaka_crop")
         self.verticalLayout.addWidget(self.plaka_crop)
@@ -146,26 +127,43 @@ class Ui_plakaokuma(object):
         item.setText(_translate("plakaokuma", "time5"))
         self.tableWidget.setSortingEnabled(__sortingEnabled)
 
-def update_label():
-    #current_time = str(datetime.datetime.now().time())
-    #ui.label.setText("")
-    while True:
-        ui.video_label.setPixmap(QtGui.QPixmap.fromImage(framecache()))
+def frameconvert():
+    lock.acquire()
+    success, FrameOrigin = cap.read()
+    lock.release()
+    if success:
+        frame = FrameOrigin
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        h = frame.shape[0]
+        w = frame.shape[1]
+        d = frame.shape[2]
+        d = d*w
+        qimage = QtGui.QImage(frame, w, h, d, QtGui.QImage.Format_RGB888)
+        return qimage
 
+def update_label():
+    while True:
+        ui.video_label.setPixmap(QtGui.QPixmap(frameconvert()))
+        ui.plaka_crop.setPixmap(QtGui.QPixmap(qimageCrop))
+
+qimageCrop = ""
 def frame_send():
     while True:
-        start = time.time()
-        ret, FrameOrigin = cap.read()
-        frame = FrameOrigin
-        frame, screenCnt, detected = test11.pre_proc(frame)
-        if detected == 1:
-            PlateText, PlateCrop = test11.reading(frame, screenCnt)
-            if PlateText != None:
-                print(PlateText)
-        end = time.time()
-        if end != 0:
-            fps = 1/(end-start)
-            print("{:.2f}".format(fps))
+        global qimageCrop
+        lock.acquire()
+        success, FrameOrigin1 = cap.read()
+        lock.release()
+        if success:
+            frame = FrameOrigin1
+            frame, screenCnt, detected = test11.pre_proc(frame)
+            if detected == 1:
+                PlateText, PlateCrop = test11.reading(frame, screenCnt)
+                if PlateText != None:
+                    print(PlateText)
+                    h = PlateCrop.shape[0]
+                    w = PlateCrop.shape[1]
+                    d = w
+                    qimageCrop = QtGui.QImage(PlateCrop, w, h, d, QtGui.QImage.Format_Grayscale8)
 
 
 if __name__ == "__main__":
@@ -174,7 +172,8 @@ if __name__ == "__main__":
     plakaokuma = QtWidgets.QMainWindow()
     ui = Ui_plakaokuma()
     ui.setupUi(plakaokuma)
-    plakaokuma.show()
+    #plakaokuma.showFullScreen()
+    #plakaokuma.show()
 
     '''timer = QtCore.QTimer()
     timer.timeout.connect(update_label)
