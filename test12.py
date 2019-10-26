@@ -1,15 +1,17 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-import sys
+# importing only those functions 
+# which are needed 
+from tkinter import *
+from tkinter.ttk import *
+from PIL import Image, ImageTk
 
-class MainWindow(QtWidgets.QMainWindow):
-    def resizeEvent(self, event):
-        print("resize")
-        QtWidgets.QMainWindow.resizeEvent(self, event)
+# creating tkinter window 
+root = Tk()
+
+image = Image.open("akiyo.jpg")
+photo = PhotoImage(image)
 
 
-
-
-app = QtWidgets.QApplication(sys.argv)
-w = MainWindow()
-w.show()
-sys.exit(app.exec_())
+label = Label(image=photo)
+label.image = photo # keep a reference!
+label.pack()
+mainloop()

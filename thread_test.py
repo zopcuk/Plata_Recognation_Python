@@ -2,7 +2,6 @@ import tkinter
 import cv2
 import PIL.Image, PIL.ImageTk
 import time
-
 class App:
     def __init__(self, window, window_title, video_source=0):
         self.window = window
@@ -18,6 +17,7 @@ class App:
         # Button that lets the user take a snapshot
         self.btn_snapshot=tkinter.Button(window, text="Snapshot", width=50, command=self.snapshot)
         self.btn_snapshot.pack(anchor=tkinter.CENTER, expand=True)
+
 
         # After it is called once, the update method will be automatically called every delay milliseconds
         self.delay = 15

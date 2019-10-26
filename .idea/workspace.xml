@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71280099-07b3-47c6-871a-09ff91f5d638" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test12.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test10.py" beforeDir="false" afterPath="$PROJECT_DIR$/test10.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test11.py" beforeDir="false" afterPath="$PROJECT_DIR$/test11.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test12.py" beforeDir="false" afterPath="$PROJECT_DIR$/test12.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/thread_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/thread_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/videotest.py" beforeDir="false" afterPath="$PROJECT_DIR$/videotest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,8 +54,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.thread_test">
-    <configuration name="parse" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.test10">
+    <configuration name="plaka_okuma" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="plate_det_reg" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -65,11 +63,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/urllib" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/urllib/parse.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plaka_okuma.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -185,19 +183,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.test10" />
-      <item itemvalue="Python.parse" />
       <item itemvalue="Python.test11" />
       <item itemvalue="Python.thread_test" />
       <item itemvalue="Python.videotest" />
       <item itemvalue="Python.test12" />
+      <item itemvalue="Python.plaka_okuma" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.thread_test" />
+        <item itemvalue="Python.plaka_okuma" />
         <item itemvalue="Python.test12" />
+        <item itemvalue="Python.thread_test" />
         <item itemvalue="Python.videotest" />
         <item itemvalue="Python.test11" />
-        <item itemvalue="Python.parse" />
       </list>
     </recent_temporary>
   </component>

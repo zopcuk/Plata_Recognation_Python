@@ -172,8 +172,8 @@ if __name__ == "__main__":
     plakaokuma = QtWidgets.QMainWindow()
     ui = Ui_plakaokuma()
     ui.setupUi(plakaokuma)
-    #plakaokuma.showFullScreen()
-    #plakaokuma.show()
+    #plakaokuma.showFullScreen()python
+    plakaokuma.show()
 
     '''timer = QtCore.QTimer()
     timer.timeout.connect(update_label)
