@@ -8,6 +8,7 @@ from PIL import Image, ImageTk
 root = Tk()
 
 image = Image.open("akiyo.jpg")
+image = Image.fromarray(image)
 photo = PhotoImage(image)
 
 
