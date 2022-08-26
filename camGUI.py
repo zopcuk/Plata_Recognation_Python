@@ -3,7 +3,7 @@ from tkinter import ttk
 import threading
 from PIL import Image, ImageTk
 import cv2
-import process
+#import process
 from datetime import datetime
 from tkinter import messagebox
 import time
@@ -11,6 +11,7 @@ import time
 cap = cv2.VideoCapture(0)
 
 
+'''
 class App(threading.Thread):
 
     def __init__(self, tk_frame):
@@ -44,58 +45,35 @@ class App(threading.Thread):
                     root.update()
         except:
             pass
+'''
 
 
-class App2(threading.Thread):
-    def __init__(self, tk_namelbl):
-        self.namelbl = tk_namelbl
-        threading.Thread.__init__(self)
-        self.start()
-
-    def run(self):
-        i=0
-        try:
-            while root.winfo_exists():
-                print("1")
-                global cap
-                ret, frame3 = cap.read()
-                #print(frame3.shape)
-                if ret:
-                    frame3, screenCnt, detected = process.pre_proc(frame3)
-                    if detected==1:
-                        PlateText, PlateCrop = process.reading(frame3, screenCnt)
-                        if PlateText != None:
-                            now = datetime.now()
-                            s1 = now.strftime("%m/%d/%Y--%H:%M:%S")
-                            print(PlateText)
-                            tree.insert('', 0, 'plate{}'.format(i), text=PlateText, values=s1)
-                            i+=1
-                            img = cv2.cvtColor(PlateCrop, cv2.COLOR_BGR2RGB)
-                            img = Image.fromarray(img)
-                            img1 = img.resize((217, 50), Image.ANTIALIAS)
-                            tkimage2 = ImageTk.PhotoImage(img1)
-                            namelbl.configure(image=tkimage2)
-                            namelbl.image = tkimage2
-                            namelbl.pack()
-                #root.protocol("WM_DELETE_WINDOW", destroy_)
+def run():
+    try:
+        while root.winfo_exists():
+            global cap
+            ret, frame1 = cap.read()
+            if ret:
+                # print(frame.winfo_width())
+                frame2 = cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB)
+                img = Image.fromarray(frame2)
+                img = img.resize((frame.winfo_width(), frame.winfo_height()), Image.BICUBIC)
+                tkimage1 = ImageTk.PhotoImage(img)
+                video_label.configure(image=tkimage1)
+                video_label.image = tkimage1
+                video_label.pack(anchor=NW, expand=TRUE)
+            elif root.winfo_exists():
+                # messagebox.showerror(title='Camera disconnect', message='Please check camera connection.')
+                answer = messagebox.askretrycancel("Camera disconnect", "Do you want to try that again?")
+                if answer:
+                    cap = cv2.VideoCapture(0)
+                else:
+                    quit_()
+            root.protocol("WM_DELETE_WINDOW", destroy_)
+            if root.winfo_exists():
                 root.update()
-        except:
-            pass
-
-'''class App3(threading.Thread):
-
-    def __init__(self, tk_frame):
-        self.frame = tk_frame
-        threading.Thread.__init__(self)
-        self.event = threading.Event()
-        self.start()
-    def stop(self):
-        self.event.set()
-
-    def run(self):
-        while True:
-            if root.winfo_exists() != 1:
-                print("1")'''
+    except:
+        pass
 
 
 def quit_():
@@ -172,8 +150,8 @@ content.columnconfigure(3, weight=1)
 content.columnconfigure(4, weight=1)
 content.rowconfigure(1, weight=1)
 
+t0 = threading.Thread(target=run)
+t0.start()
+#APP = App(frame)
 
-APP = App(frame)
-APP2 = App2(namelbl)
-#APP3 = App3(frame)
 root.mainloop()

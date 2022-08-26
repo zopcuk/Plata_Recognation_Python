@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="71280099-07b3-47c6-871a-09ff91f5d638" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test12.py" beforeDir="false" afterPath="$PROJECT_DIR$/test12.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +24,11 @@
   </component>
   <component name="ProjectId" id="1RYQKUWMxmOuVFTNyoakm1DPNX9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -39,18 +42,6 @@
   </component>
   <component name="PyDebuggerOptionsProvider">
     <option name="myPyQtBackend" value="PyQt5" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python.test12">
     <configuration name="plaka_okuma" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -180,12 +171,12 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.plaka_okuma" />
       <item itemvalue="Python.test10" />
+      <item itemvalue="Python.test12" />
+      <item itemvalue="Python.test9" />
       <item itemvalue="Python.thread_test" />
       <item itemvalue="Python.videotest" />
-      <item itemvalue="Python.test12" />
-      <item itemvalue="Python.plaka_okuma" />
-      <item itemvalue="Python.test9" />
     </list>
     <recent_temporary>
       <list>
